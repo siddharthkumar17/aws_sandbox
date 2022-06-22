@@ -1,0 +1,11 @@
+Resources:
+  Function:
+    Type: AWS::Serverless::Function
+    Properties:
+      Timeout: 300
+      MemorySize: 128
+      Handler: com.sidkumar17.lambdas.AddUserHandler
+      CodeUri: C:\Users\Siddharth Kumar\IdeaProjects\Lambdas
+      Runtime: java11
+      Architectures:
+        - x86_64

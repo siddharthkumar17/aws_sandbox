@@ -24,14 +24,16 @@ public class AddUserHandler implements RequestStreamHandler {
 
         String TABLE_NAME = "userTable";
         JSONObject params = null;
+
+        //Deserialize event
         try {
             event = (JSONObject) parser.parse(reader);
             params = (JSONObject) event.get("queryStringParameters");
         } catch (Exception e) {
             System.out.println("Error" + e.getLocalizedMessage());
         }
-        // Write to DynamoDB
 
+        // Write to DynamoDB
         AmazonDynamoDB client = AmazonDynamoDBClientBuilder.standard()
                 .withRegion(Regions.US_EAST_1)
                 .build();
@@ -47,6 +49,8 @@ public class AddUserHandler implements RequestStreamHandler {
         } catch (Exception e) {
             System.out.println(e.getLocalizedMessage());
         }
+
+
         OutputStreamWriter writer = new OutputStreamWriter(outputStream, "UTF-8");
         writer.write(response);
         writer.close();
